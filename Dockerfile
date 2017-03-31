@@ -1,9 +1,7 @@
-FROM ubuntu:14.04
-MAINTAINER Lyle Scott, III "lyle@digitalfoo.net"
+FROM debian:jessie
+MAINTAINER Ralf Herzog "ralf@rherzog.de"
 
 ENV DEBIAN_FRONTEND noninteractive
-
-USER root
 
 RUN apt-get update && \
 #>> Postfix setup
@@ -15,7 +13,7 @@ apt-get -q -y install \
     libsasl2-modules && \
 # main.cf
 postconf -e smtpd_banner="\$myhostname ESMTP" && \
-postconf -e relayhost=[smtp.gmail.com]:587 && \
+postconf -e relayhost=[smtp.mailgun.org]:587 && \
 postconf -e smtp_sasl_auth_enable=yes && \
 postconf -e smtp_sasl_password_maps=hash:/etc/postfix/sasl_passwd && \
 postconf -e smtp_sasl_security_options=noanonymous && \
