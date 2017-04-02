@@ -7,8 +7,14 @@ services:
   container_name: "postfix-mailgun-relay"
   environment:
    SYSTEM_TIMEZONE: "Europe/Berlin"
-   MYNETWORKS: "10.0.0.0/8 172.0.0.0/8 192.168.0.0/16"
-   EMAIL: "postmaster@mg.{YOURDOMAIN}"
-   EMAILPASS: "{PASSWORD}"
+   MYNETWORKS: ""
+   EMAIL: "postmaster@mg.example.com"
+   EMAILPASS: "supersecretpassword"
+   DOMAIN: "example.com"
+   SASL_LDAP_SERVER: 'ldap.example.com'
+   SASL_LDAP_BIND_DN: 'cn=smtp,ou=services,dc=example,dc=com'
+   SASL_LDAP_BIND_DN_PASSWORD: 'ldapsmtppassword'
+   SASL_LDAP_USERS: 'ou=users,dc=example,dc=com'
+   SASL_LDAP_USERS_FILTER: '(&(objectclass=inetOrgPerson)(mail=%u))'
   ports:
   - "9025:25"
