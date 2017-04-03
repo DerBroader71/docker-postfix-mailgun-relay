@@ -15,6 +15,6 @@ services:
    SASL_LDAP_BIND_DN: 'cn=smtp,ou=services,dc=example,dc=com'
    SASL_LDAP_BIND_DN_PASSWORD: 'ldapsmtppassword'
    SASL_LDAP_USERS: 'ou=users,dc=example,dc=com'
-   SASL_LDAP_USERS_FILTER: '(&(objectclass=inetOrgPerson)(mail=%u))'
+   SASL_LDAP_USERS_FILTER: '(&(objectclass=inetOrgPerson)(mail=%u@%r))'
   ports:
   - "9025:25"
